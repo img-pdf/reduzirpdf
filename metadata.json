@@ -1,0 +1,6 @@
+{
+  "name": "ReduzirPDF",
+  "description": "Comprima arquivos PDF para um tamanho máximo específico (100 KB, 200 KB, 500 KB, 1 MB ou 2 MB) diretamente no navegador, grátis e com total privacidade.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
