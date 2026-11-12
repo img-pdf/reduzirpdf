@@ -2,16 +2,89 @@
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
+    <script>
+      (function() {
+        // Intercepta e neutraliza erros de extensões de terceiros (ex: Urban VPN / requests.js)
+        window.addEventListener('error', function(event) {
+          if (
+            (event.filename && event.filename.includes('chrome-extension://')) ||
+            (event.message && (event.message.includes('chrome-extension://') || event.message.includes('Cannot set property fetch of'))) ||
+            (event.error && event.error.stack && event.error.stack.includes('chrome-extension://'))
+          ) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+            return true;
+          }
+        }, true);
+
+        window.addEventListener('unhandledrejection', function(event) {
+          if (
+            event.reason &&
+            typeof event.reason.stack === 'string' &&
+            (event.reason.stack.includes('chrome-extension://') || event.reason.stack.includes('Cannot set property fetch of'))
+          ) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+          }
+        }, true);
+
+        var prevOnError = window.onerror;
+        window.onerror = function(msg, url, lineNo, columnNo, error) {
+          if (
+            (typeof url === 'string' && url.includes('chrome-extension://')) ||
+            (error && error.stack && error.stack.includes('chrome-extension://')) ||
+            (typeof msg === 'string' && (msg.includes('Cannot set property fetch of') || msg.includes('chrome-extension://')))
+          ) {
+            return true;
+          }
+          if (typeof prevOnError === 'function') {
+            return prevOnError.apply(this, arguments);
+          }
+          return false;
+        };
+
+        // Garante que window.fetch e Window.prototype.fetch tenham getter e setter configurados
+        try {
+          var originalFetch = typeof window !== 'undefined' && window.fetch ? window.fetch.bind(window) : null;
+          if (originalFetch) {
+            var _f = originalFetch;
+            try {
+              Object.defineProperty(window, 'fetch', {
+                get: function() { return _f; },
+                set: function(val) { _f = val; },
+                configurable: true,
+                enumerable: true
+              });
+            } catch (e1) {}
+
+            if (typeof Window !== 'undefined' && Window.prototype) {
+              try {
+                Object.defineProperty(Window.prototype, 'fetch', {
+                  get: function() { return _f; },
+                  set: function(val) { _f = val; },
+                  configurable: true,
+                  enumerable: true
+                });
+              } catch (e2) {}
+            }
+          }
+        } catch (err) {}
+      })();
+    </script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>ReduzirPDF – Comprimir PDF para o tamanho que você precisa</title>
     <meta name="description" content="Comprima arquivos PDF para um tamanho máximo específico (100 KB, 200 KB, 500 KB, 1 MB ou 2 MB) diretamente no navegador, grátis e com total privacidade." />
+    <link rel="canonical" href="https://reduzirpdf.pages.dev/" />
     <meta property="og:title" content="ReduzirPDF – Comprimir PDF para o tamanho que você precisa" />
     <meta property="og:description" content="Comprima arquivos PDF para um tamanho máximo específico (100 KB, 200 KB, 500 KB, 1 MB ou 2 MB) diretamente no navegador, grátis e com total privacidade." />
+    <meta property="og:url" content="https://reduzirpdf.pages.dev/" />
+    <meta property="og:site_name" content="ReduzirPDF" />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="pt_BR" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="ReduzirPDF – Comprimir PDF para o tamanho que você precisa" />
     <meta name="twitter:description" content="Comprima arquivos PDF para um tamanho máximo específico (100 KB, 200 KB, 500 KB, 1 MB ou 2 MB) diretamente no navegador, grátis e com total privacidade." />
+    <meta name="twitter:url" content="https://reduzirpdf.pages.dev/" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />

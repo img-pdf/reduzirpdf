@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://reduzirpdf.com.br/sitemap.xml
+Sitemap: https://reduzirpdf.pages.dev/sitemap.xml

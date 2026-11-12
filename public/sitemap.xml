@@ -1,53 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://reduzirpdf.com.br/</loc>
+    <loc>https://reduzirpdf.pages.dev/</loc>
+    <lastmod>2026-11-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://reduzirpdf.com.br/comprimir-pdf-para-100kb</loc>
+    <loc>https://reduzirpdf.pages.dev/comprimir-pdf-para-100kb</loc>
+    <lastmod>2026-11-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://reduzirpdf.com.br/comprimir-pdf-para-200kb</loc>
+    <loc>https://reduzirpdf.pages.dev/comprimir-pdf-para-200kb</loc>
+    <lastmod>2026-11-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://reduzirpdf.com.br/comprimir-pdf-para-500kb</loc>
+    <loc>https://reduzirpdf.pages.dev/comprimir-pdf-para-500kb</loc>
+    <lastmod>2026-11-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://reduzirpdf.com.br/comprimir-pdf-para-1mb-gratis</loc>
+    <loc>https://reduzirpdf.pages.dev/comprimir-pdf-para-1mb-gratis</loc>
+    <lastmod>2026-11-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://reduzirpdf.com.br/compactar-pdf-para-enviar</loc>
+    <loc>https://reduzirpdf.pages.dev/compactar-pdf-para-enviar</loc>
+    <lastmod>2026-11-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://reduzirpdf.com.br/diminuir-tamanho-de-pdf</loc>
+    <loc>https://reduzirpdf.pages.dev/diminuir-tamanho-de-pdf</loc>
+    <lastmod>2026-11-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://reduzirpdf.com.br/privacidade</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://reduzirpdf.com.br/termos</loc>
-    <changefreq>yearly</changefreq>
-    <priority>0.5</priority>
-  </url>
-  <url>
-    <loc>https://reduzirpdf.com.br/contato</loc>
+    <loc>https://reduzirpdf.pages.dev/contato</loc>
+    <lastmod>2026-11-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://reduzirpdf.pages.dev/privacidade</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://reduzirpdf.pages.dev/termos</loc>
+    <lastmod>2026-11-12</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
   </url>
 </urlset>

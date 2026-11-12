@@ -251,10 +251,10 @@ export const LegalPage: React.FC<LegalPageProps> = ({ type, onNavigate }) => {
               Prefere enviar um e-mail diretamente do seu cliente de correio?
             </p>
             <a
-              href="mailto:contato@reduzirpdf.com.br"
+              href="mailto:contato@reduzirpdf.pages.dev"
               className="text-xs font-mono font-semibold text-blue-600 hover:underline"
             >
-              contato@reduzirpdf.com.br
+              contato@reduzirpdf.pages.dev
             </a>
           </div>
 

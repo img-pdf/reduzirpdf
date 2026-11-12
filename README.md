@@ -66,47 +66,22 @@ O build estático será gerado na pasta `dist/`.
 
 ---
 
-## 🌐 Deploy no GitHub Pages
+## 🌐 Deploy em Produção (Cloudflare Pages & GitHub Pages)
 
-O ReduzirPDF foi construído para ser hospedado como um site 100% estático no **GitHub Pages**, sem necessidade de servidores back-end:
+O ReduzirPDF é hospedado oficialmente no **Cloudflare Pages**:
+- **URL Oficial de Produção**: [https://reduzirpdf.pages.dev/](https://reduzirpdf.pages.dev/)
+- **Repositório**: [https://github.com/img-pdf/reduzirpdf](https://github.com/img-pdf/reduzirpdf)
 
-1. **Configuração de Repositório no GitHub**:
-   - Faça push deste código para um repositório no GitHub (ex.: `seu-usuario/reduzirpdf`).
-2. **GitHub Actions Workflow (Recomendado)**:
-   - No repositório, vá em **Settings > Pages**.
-   - Em **Build and deployment > Source**, selecione **GitHub Actions**.
-   - Crie um arquivo `.github/workflows/deploy.yml`:
-     ```yaml
-     name: Deploy no GitHub Pages
-     on:
-       push:
-         branches: [main]
-     permissions:
-       contents: read
-       pages: write
-       id-token: write
-     jobs:
-       deploy:
-         environment:
-           name: github-pages
-           url: ${{ steps.deployment.outputs.page_url }}
-         runs-on: ubuntu-latest
-         steps:
-           - uses: actions/checkout@v4
-           - uses: actions/setup-node@v4
-             with:
-               node-version: 20
-               cache: 'npm'
-           - run: npm ci
-           - run: npm run build
-           - uses: actions/upload-pages-artifact@v3
-             with:
-               path: ./dist
-           - id: deployment
-             uses: actions/deploy-pages@v4
-     ```
-3. **Roteamento de Rotas no GitHub Pages**:
-   - O arquivo `public/404.html` incluído no projeto intercepta requisições diretas a subpáginas (como `/comprimir-pdf-para-100kb`) e restaura a rota correta no cliente sem erro 404.
+### Deploy no Cloudflare Pages (Produção Oficial)
+1. Conecte o repositório no Cloudflare Pages.
+2. Defina os parâmetros de build:
+   - **Framework preset**: `Vite`
+   - **Build command**: `npm run build`
+   - **Build output directory**: `dist`
+3. O roteamento SPA para rotas como `/comprimir-pdf-para-100kb` é tratado nativamente pelo arquivo `public/_redirects` (`/* /index.html 200`), que é copiado para `dist/_redirects` automaticamente no build.
+
+### Deploy alternativo no GitHub Pages
+O projeto também mantém compatibilidade com o GitHub Pages através do arquivo `public/404.html`.
 
 ---
 
