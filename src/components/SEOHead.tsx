@@ -46,6 +46,22 @@ export const SEOHead: React.FC<SEOHeadProps> = ({ page }) => {
     }
     linkCanonical.setAttribute('href', canonicalUrl);
 
+    // 3.1. Atualizar Tags hreflang para Português (pt-BR, pt, x-default)
+    const updateHreflang = (lang: string, href: string) => {
+      let linkHreflang = document.querySelector(`link[rel="alternate"][hreflang="${lang}"]`) as HTMLLinkElement | null;
+      if (!linkHreflang) {
+        linkHreflang = document.createElement('link');
+        linkHreflang.setAttribute('rel', 'alternate');
+        linkHreflang.setAttribute('hreflang', lang);
+        document.head.appendChild(linkHreflang);
+      }
+      linkHreflang.setAttribute('href', href);
+    };
+
+    updateHreflang('pt-BR', canonicalUrl);
+    updateHreflang('pt', canonicalUrl);
+    updateHreflang('x-default', canonicalUrl);
+
     // 4. OpenGraph e Twitter Tags
     const setMetaTag = (attrName: 'property' | 'name', attrValue: string, content: string) => {
       let meta = document.querySelector(`meta[${attrName}="${attrValue}"]`);
