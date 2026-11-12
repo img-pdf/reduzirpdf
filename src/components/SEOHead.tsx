@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { PageContent } from '../types';
 
-export const PRODUCTION_CANONICAL_HOST = 'https://reduzirpdf.pages.dev';
+export const PRODUCTION_CANONICAL_HOST = 'https://reduzirpdf.github.io';
 
 export function getCanonicalUrlForPath(path: string): string {
   if (!path || path === '/') {
@@ -35,7 +35,6 @@ export const SEOHead: React.FC<SEOHeadProps> = ({ page }) => {
     let linkCanonical: HTMLLinkElement;
     if (existingCanonicals.length > 0) {
       linkCanonical = existingCanonicals[0] as HTMLLinkElement;
-      // Remove quaisquer duplicatas extras
       for (let i = 1; i < existingCanonicals.length; i++) {
         existingCanonicals[i].remove();
       }
@@ -46,7 +45,7 @@ export const SEOHead: React.FC<SEOHeadProps> = ({ page }) => {
     }
     linkCanonical.setAttribute('href', canonicalUrl);
 
-    // 3.1. Atualizar Tags hreflang para Português (pt-BR, pt, x-default)
+    // 4. Atualizar Tags hreflang para Português (pt-BR, pt, x-default)
     const updateHreflang = (lang: string, href: string) => {
       let linkHreflang = document.querySelector(`link[rel="alternate"][hreflang="${lang}"]`) as HTMLLinkElement | null;
       if (!linkHreflang) {
@@ -62,7 +61,7 @@ export const SEOHead: React.FC<SEOHeadProps> = ({ page }) => {
     updateHreflang('pt', canonicalUrl);
     updateHreflang('x-default', canonicalUrl);
 
-    // 4. OpenGraph e Twitter Tags
+    // 5. OpenGraph e Twitter Tags
     const setMetaTag = (attrName: 'property' | 'name', attrValue: string, content: string) => {
       let meta = document.querySelector(`meta[${attrName}="${attrValue}"]`);
       if (!meta) {
@@ -81,14 +80,22 @@ export const SEOHead: React.FC<SEOHeadProps> = ({ page }) => {
     setMetaTag('property', 'og:locale', 'pt_BR');
     setMetaTag('property', 'og:type', 'website');
 
-    // Twitter
+    // Twitter Card
     setMetaTag('name', 'twitter:card', 'summary_large_image');
     setMetaTag('name', 'twitter:title', page.title);
     setMetaTag('name', 'twitter:description', page.metaDescription);
     setMetaTag('name', 'twitter:url', canonicalUrl);
 
-    // 5. Schema.org JSON-LD Estruturado
+    // 6. Schema.org JSON-LD Completo (Organization, WebSite, WebApplication, BreadcrumbList, FAQPage)
     const jsonLdData: Record<string, unknown>[] = [
+      {
+        '@context': 'https://schema.org',
+        '@type': 'Organization',
+        name: 'ReduzirPDF',
+        url: `${PRODUCTION_CANONICAL_HOST}/`,
+        description: 'Ferramenta web gratuita para compressão e redução de tamanho de arquivos PDF no navegador com privacidade total.',
+        sameAs: ['https://github.com/img-pdf/reduzirpdf'],
+      },
       {
         '@context': 'https://schema.org',
         '@type': 'WebSite',
@@ -112,9 +119,31 @@ export const SEOHead: React.FC<SEOHeadProps> = ({ page }) => {
           price: '0',
           priceCurrency: 'BRL',
         },
+        featureList: [
+          'Compressão de PDF para 100 KB, 200 KB, 500 KB, 1 MB e 2 MB',
+          'Processamento local na memória do navegador (sem upload de arquivos)',
+          'Opção de tamanho máximo personalizado em KB e MB',
+          'Preservação de dimensões e proporções de página',
+          'Compatibilidade total com celular Android, iPhone e computador',
+        ],
       },
     ];
 
+    // BreadcrumbList Schema
+    if (page.breadcrumbs && page.breadcrumbs.length > 0) {
+      jsonLdData.push({
+        '@context': 'https://schema.org',
+        '@type': 'BreadcrumbList',
+        itemListElement: page.breadcrumbs.map((crumb, idx) => ({
+          '@type': 'ListItem',
+          position: idx + 1,
+          name: crumb.name,
+          item: getCanonicalUrlForPath(crumb.path),
+        })),
+      });
+    }
+
+    // FAQPage Schema (sincronizado com o conteúdo visível)
     if (page.faqs && page.faqs.length > 0) {
       jsonLdData.push({
         '@context': 'https://schema.org',

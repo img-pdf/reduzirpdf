@@ -14,7 +14,14 @@ import {
   ArrowRight,
   FileCheck2,
   Sliders,
-  DownloadCloud
+  CheckCircle2,
+  HelpCircle,
+  Lightbulb,
+  AlertCircle,
+  Cpu,
+  Layers,
+  Sparkles,
+  Bot
 } from 'lucide-react';
 
 export default function App() {
@@ -48,7 +55,6 @@ export default function App() {
   };
 
   const currentPage = PAGES_DATA[currentPath] || PAGES_DATA['/'];
-
   const isLegalRoute = currentPath === '/privacidade' || currentPath === '/termos' || currentPath === '/contato';
 
   const toggleFaq = (index: number) => {
@@ -70,9 +76,39 @@ export default function App() {
             onNavigate={navigateTo}
           />
         ) : (
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 sm:py-12">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-10">
+            {/* Navegação Estruturada (Breadcrumbs para SEO / GEO) */}
+            {currentPage.breadcrumbs && currentPage.breadcrumbs.length > 1 && (
+              <nav aria-label="Navegação estrutural" className="mb-6 text-xs text-slate-500 flex items-center gap-1.5 flex-wrap">
+                {currentPage.breadcrumbs.map((crumb, idx) => {
+                  const isLast = idx === currentPage.breadcrumbs.length - 1;
+                  return (
+                    <React.Fragment key={crumb.path + idx}>
+                      {idx > 0 && <span aria-hidden="true" className="text-slate-400">/</span>}
+                      {isLast ? (
+                        <span className="font-medium text-slate-800" aria-current="page">
+                          {crumb.name}
+                        </span>
+                      ) : (
+                        <a
+                          href={crumb.path}
+                          onClick={(e) => {
+                            e.preventDefault();
+                            navigateTo(crumb.path);
+                          }}
+                          className="hover:text-blue-600 transition-colors"
+                        >
+                          {crumb.name}
+                        </a>
+                      )}
+                    </React.Fragment>
+                  );
+                })}
+              </nav>
+            )}
+
             {/* Hero Section */}
-            <div className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
+            <header className="text-center max-w-3xl mx-auto mb-8 sm:mb-10">
               {/* Trust statement unboxed */}
               <div className="inline-flex items-center gap-2 text-xs font-semibold text-blue-700 bg-blue-50/80 px-3 py-1 rounded-full border border-blue-200/60 mb-4">
                 <ShieldCheck className="w-3.5 h-3.5 text-blue-600" />
@@ -86,7 +122,18 @@ export default function App() {
               <p className="mt-4 text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto">
                 {currentPage.heroDescription}
               </p>
-            </div>
+
+              {/* AEO: Resposta Direta Imediata (Direct Answer para Google AI Overviews / Featured Snippets / Perplexity) */}
+              {currentPage.directAnswer && (
+                <div className="mt-6 p-4 sm:p-5 text-left bg-blue-50/70 rounded-xl border border-blue-200/70 text-slate-800 text-xs sm:text-sm leading-relaxed shadow-xs">
+                  <div className="flex items-center gap-2 font-bold text-blue-900 mb-1.5">
+                    <Sparkles className="w-4 h-4 text-blue-600 shrink-0" />
+                    <span>Resposta Rápida: Como comprimir seu PDF agora</span>
+                  </div>
+                  <p className="text-slate-700">{currentPage.directAnswer}</p>
+                </div>
+              )}
+            </header>
 
             {/* Ferramenta Principal de Compressão (Visível Imediatamente) */}
             <div className="mb-10">
@@ -98,8 +145,8 @@ export default function App() {
             {/* Espaço reservado AdSense Horizontal (não obstrutivo) */}
             <AdSensePlaceholder slotType="horizontal-banner" />
 
-            {/* Texto de Apresentação e Contexto da Página */}
-            <section className="my-12 p-6 sm:p-8 bg-white rounded-2xl border border-slate-200/80">
+            {/* Contexto da Ferramenta e Diferenciais */}
+            <section className="my-12 p-6 sm:p-8 bg-white rounded-2xl border border-slate-200/80 shadow-xs">
               <h2 className="text-xl sm:text-2xl font-bold text-slate-900 mb-3">
                 Por que usar o ReduzirPDF?
               </h2>
@@ -135,38 +182,134 @@ export default function App() {
               </div>
             </section>
 
-            {/* Seção Como Funciona */}
-            <section id="como-funciona" className="my-16 scroll-mt-20">
-              <div className="text-center max-w-2xl mx-auto mb-10">
-                <span className="text-xs font-semibold uppercase tracking-wider text-blue-600">Passo a Passo</span>
-                <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mt-1">Como comprimir um PDF?</h2>
-                <p className="text-slate-600 text-sm mt-2">Três etapas rápidas para atingir o tamanho ideal sem complicações.</p>
-              </div>
+            {/* AEO: Seção Como Comprimir um PDF (5 Passos Claros) */}
+            {currentPage.howToSteps && currentPage.howToSteps.length > 0 && (
+              <section id="como-funciona" className="my-16 scroll-mt-20">
+                <div className="text-center max-w-2xl mx-auto mb-10">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-blue-600">Instruções Passo a Passo</span>
+                  <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mt-1">Como comprimir um PDF passo a passo</h2>
+                  <p className="text-slate-600 text-sm mt-2">
+                    Siga o roteiro rápido para reduzir o peso do seu arquivo mantendo máxima clareza.
+                  </p>
+                </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {currentPage.howToSteps.map((step) => (
-                  <div
-                    key={step.step}
-                    className="p-6 rounded-2xl bg-white border border-slate-200/80 shadow-sm relative overflow-hidden"
-                  >
-                    <div className="w-10 h-10 rounded-xl bg-blue-600 text-white font-bold flex items-center justify-center text-sm mb-4">
-                      {step.step}
+                <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+                  {currentPage.howToSteps.map((step) => (
+                    <div
+                      key={step.step}
+                      className="p-5 rounded-2xl bg-white border border-slate-200/80 shadow-xs flex flex-col justify-between"
+                    >
+                      <div>
+                        <div className="w-8 h-8 rounded-lg bg-blue-600 text-white font-bold flex items-center justify-center text-xs mb-3">
+                          {step.step}
+                        </div>
+                        <h3 className="text-sm font-bold text-slate-900 mb-1.5">{step.title}</h3>
+                        <p className="text-xs text-slate-600 leading-relaxed">{step.description}</p>
+                      </div>
                     </div>
-                    <h3 className="text-base font-bold text-slate-900 mb-2">{step.title}</h3>
-                    <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">{step.description}</p>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {/* GEO: Como Funciona a Tecnologia de Compressão (Otimização Sem Perdas vs Rasterização) */}
+            {currentPage.howCompressionWorks && (
+              <section className="my-16 p-6 sm:p-8 bg-slate-100/70 rounded-2xl border border-slate-200">
+                <div className="flex items-center gap-2.5 text-blue-700 font-bold text-xs uppercase tracking-wider mb-2">
+                  <Cpu className="w-4 h-4 text-blue-600" />
+                  <span>Arquitetura Técnica de Compressão</span>
+                </div>
+                <h2 className="text-xl sm:text-2xl font-bold text-slate-900 mb-3">
+                  {currentPage.howCompressionWorks.title}
+                </h2>
+                <p className="text-slate-600 text-sm leading-relaxed mb-6">
+                  {currentPage.howCompressionWorks.description}
+                </p>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs sm:text-sm">
+                  <div className="p-4 bg-white rounded-xl border border-slate-200">
+                    <h3 className="font-bold text-slate-900 mb-1 flex items-center gap-1.5">
+                      <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                      Fase 1: Otimização Sem Perdas (Lossless)
+                    </h3>
+                    <p className="text-slate-600 leading-relaxed">
+                      {currentPage.howCompressionWorks.losslessText}
+                    </p>
                   </div>
-                ))}
-              </div>
-            </section>
+                  <div className="p-4 bg-white rounded-xl border border-slate-200">
+                    <h3 className="font-bold text-slate-900 mb-1 flex items-center gap-1.5">
+                      <Layers className="w-4 h-4 text-blue-600" />
+                      Fase 2: Renderização Adaptativa de Imagens
+                    </h3>
+                    <p className="text-slate-600 leading-relaxed">
+                      {currentPage.howCompressionWorks.rasterizedText}
+                    </p>
+                  </div>
+                </div>
+              </section>
+            )}
+
+            {/* Dicas Práticas para Deixar o PDF Mais Leve (AEO & GEO) */}
+            {currentPage.tipsForReducingSize && currentPage.tipsForReducingSize.length > 0 && (
+              <section className="my-16">
+                <div className="text-center max-w-2xl mx-auto mb-10">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-blue-600">Recomendações Práticas</span>
+                  <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mt-1">Dicas para deixar seu PDF mais leve</h2>
+                  <p className="text-slate-600 text-sm mt-2">
+                    Boas práticas de preparação de arquivos que evitam o excesso de megabytes antes mesmo da compactação.
+                  </p>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                  {currentPage.tipsForReducingSize.map((tip, idx) => (
+                    <div
+                      key={idx}
+                      className="p-5 rounded-2xl bg-white border border-slate-200/80 shadow-xs"
+                    >
+                      <div className="w-8 h-8 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center mb-3">
+                        <Lightbulb className="w-4 h-4" />
+                      </div>
+                      <h3 className="text-sm font-bold text-slate-900 mb-1.5">{tip.title}</h3>
+                      <p className="text-xs text-slate-600 leading-relaxed">{tip.description}</p>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
+
+            {/* Limitações Reais da Compressão (Transparência, Anti-Alucinação e Confiança) */}
+            {currentPage.limitations && currentPage.limitations.length > 0 && (
+              <section className="my-16 p-6 sm:p-8 bg-amber-50/50 rounded-2xl border border-amber-200/60">
+                <div className="flex items-center gap-2 text-amber-800 font-bold text-xs uppercase tracking-wider mb-2">
+                  <AlertCircle className="w-4 h-4 text-amber-600" />
+                  <span>Transparência e Limites Técnicos</span>
+                </div>
+                <h2 className="text-xl sm:text-2xl font-bold text-slate-900 mb-3">
+                  Limitações reais da compressão de documentos
+                </h2>
+                <p className="text-slate-600 text-xs sm:text-sm leading-relaxed mb-6">
+                  Nenhum algoritmo pode garantir que qualquer documento atinja qualquer tamanho arbitrário sem respeitar os limites matemáticos dos dados. Explicamos com transparência o que esperar:
+                </p>
+
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+                  {currentPage.limitations.map((limit, idx) => (
+                    <div key={idx} className="p-4 bg-white rounded-xl border border-amber-200/70">
+                      <h3 className="font-bold text-slate-900 mb-1">{limit.title}</h3>
+                      <p className="text-slate-600 leading-relaxed">{limit.description}</p>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
 
             {/* Casos de Uso Reais no Brasil */}
             {currentPage.useCases && currentPage.useCases.length > 0 && (
               <section className="my-16">
                 <div className="text-center max-w-2xl mx-auto mb-10">
-                  <span className="text-xs font-semibold uppercase tracking-wider text-blue-600">Aplicações Práticas</span>
-                  <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mt-1">Ideal para o dia a dia no Brasil</h2>
+                  <span className="text-xs font-semibold uppercase tracking-wider text-blue-600">Aplicações Práticas no Brasil</span>
+                  <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mt-1">Onde usar os arquivos comprimidos?</h2>
                   <p className="text-slate-600 text-sm mt-2">
-                    Evite erros de upload e recusas em sistemas que possuem limites restritos de arquivo.
+                    Respeite com facilidade os limites de upload dos principais sistemas públicos e corporativos brasileiros.
                   </p>
                 </div>
 
@@ -174,7 +317,7 @@ export default function App() {
                   {currentPage.useCases.map((uc, i) => (
                     <div
                       key={i}
-                      className="p-5 sm:p-6 rounded-2xl bg-white border border-slate-200/80 shadow-sm flex items-start gap-4"
+                      className="p-5 sm:p-6 rounded-2xl bg-white border border-slate-200/80 shadow-xs flex items-start gap-4"
                     >
                       <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 mt-0.5">
                         <FileCheck2 className="w-5 h-5" />
@@ -215,14 +358,14 @@ export default function App() {
             {/* Espaço reservado AdSense In-Content */}
             <AdSensePlaceholder slotType="in-content" />
 
-            {/* Perguntas Frequentes (FAQ) */}
+            {/* AEO: Perguntas Frequentes (FAQ) Aprofundadas */}
             {currentPage.faqs && currentPage.faqs.length > 0 && (
               <section id="perguntas-frequentes" className="my-16 scroll-mt-20">
                 <div className="text-center max-w-2xl mx-auto mb-10">
-                  <span className="text-xs font-semibold uppercase tracking-wider text-blue-600">Tire Suas Dúvidas</span>
-                  <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mt-1">Perguntas Frequentes</h2>
+                  <span className="text-xs font-semibold uppercase tracking-wider text-blue-600">Dúvidas Comuns</span>
+                  <h2 className="text-2xl sm:text-3xl font-bold text-slate-900 mt-1">Perguntas Frequentes sobre Compressão de PDF</h2>
                   <p className="text-slate-600 text-sm mt-2">
-                    Respostas claras e transparentes sobre a compressão de PDF no navegador.
+                    Respostas objetivas e fundamentadas sobre tamanho, qualidade e privacidade.
                   </p>
                 </div>
 
@@ -257,6 +400,20 @@ export default function App() {
                 </div>
               </section>
             )}
+
+            {/* AAO: Referência para Agentes de IA e Motores de Busca */}
+            <section className="my-12 p-4 rounded-xl bg-slate-100/60 border border-slate-200 text-center text-xs text-slate-500">
+              <div className="flex items-center justify-center gap-2 mb-1 text-slate-700 font-semibold">
+                <Bot className="w-4 h-4 text-blue-600" />
+                <span>Documentação para Agentes de IA e Assistentes Virtuais</span>
+              </div>
+              <p>
+                Informações estruturadas e documentação legível por máquina disponíveis em{' '}
+                <a href="/llms.txt" target="_blank" rel="noopener noreferrer" className="text-blue-600 font-mono hover:underline">/llms.txt</a>
+                {' '}e{' '}
+                <a href="/tools.json" target="_blank" rel="noopener noreferrer" className="text-blue-600 font-mono hover:underline">/tools.json</a>.
+              </p>
+            </section>
           </div>
         )}
       </main>

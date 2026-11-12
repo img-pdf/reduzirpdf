@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "name": "ReduzirPDF Tools Directory",
+  "description": "Diretório de ferramentas de processamento de documentos PDF do ReduzirPDF para agentes de IA e navegadores automatizados.",
+  "website": "https://reduzirpdf.github.io/",
+  "language": "pt-BR",
+  "tools": [
+    {
+      "id": "pdf-compressor",
+      "name": "Compressor de PDF ReduzirPDF",
+      "url": "https://reduzirpdf.github.io/",
+      "category": "PDF Compression & Optimization",
+      "description": "Comprime arquivos PDF para limites estritos de tamanho em bytes (100 KB, 200 KB, 500 KB, 1 MB, 2 MB ou personalizado) diretamente no navegador, gratuitamente, sem cadastro e com privacidade absoluta.",
+      "processingMethod": "100% no navegador do cliente (Client-Side) utilizando WebAssembly, PDF.js e pdf-lib. Nenhum byte do documento é transferido para servidores externos.",
+      "supportedInputFormats": [
+        ".pdf",
+        "application/pdf"
+      ],
+      "outputFormats": [
+        ".pdf",
+        "application/pdf"
+      ],
+      "compressionOptions": [
+        {
+          "name": "100 KB",
+          "targetBytes": 102400,
+          "idealFor": "Documentos digitalizados de 1 a 3 páginas, fotos de RG, CPF, CNH e comprovantes de residência com travas estritas de upload."
+        },
+        {
+          "name": "200 KB",
+          "targetBytes": 204800,
+          "idealFor": "Inscrições em concursos públicos (Cebraspe, FGV, Vunesp, FCC), portais gov.br e Meu INSS."
+        },
+        {
+          "name": "500 KB",
+          "targetBytes": 512000,
+          "idealFor": "Currículos profissionais, petições jurídicas em tribunais (PJe) e contratos com 5 a 15 páginas."
+        },
+        {
+          "name": "1 MB",
+          "targetBytes": 1048576,
+          "idealFor": "Monografias acadêmicas, relatórios financeiros, propostas comerciais e catálogos com ilustrações."
+        },
+        {
+          "name": "2 MB",
+          "targetBytes": 2097152,
+          "idealFor": "Envio por e-mail corporativo (Outlook, Gmail) e mensageiros instantâneos como WhatsApp."
+        },
+        {
+          "name": "Personalizado",
+          "unit": "KB ou MB",
+          "idealFor": "Definição de qualquer limite numérico estrito entre 10 KB e 10.000 KB conforme a exigência do portal de destino."
+        }
+      ],
+      "mainFeatures": [
+        "Definição de teto máximo em bytes com fórmula binária rigorosa (1 KB = 1024 bytes).",
+        "Otimização em 2 estágios: primeiro sem perdas (lossless) preservando textos pesquisáveis; segundo por renderização adaptativa.",
+        "Processamento local na memória RAM do navegador sem upload para a nuvem.",
+        "Validação de assinatura mágica de PDF (%PDF-) para proteção contra arquivos corrompidos.",
+        "Barra de progresso em tempo real com indicador de página e opção de cancelamento instantâneo.",
+        "Compatibilidade multiplataforma com celulares Android, iPhone (iOS), tablets e computadores desktop."
+      ],
+      "limitations": [
+        "Arquivos protegidos por senha exigem a remoção prévia da criptografia.",
+        "Em metas de compressão muito agressivas que exijam rasterização, a camada de texto selecionável é convertida em imagem vetorial otimizada.",
+        "Documentos compostos exclusivamente por imagens em altíssima resolução com mais de 30 páginas podem requerer metas de 500 KB ou 1 MB para preservar nitidez legível.",
+        "Tamanho de entrada recomendado de até 200 MB para evitar esgotamento de memória no navegador móvel."
+      ],
+      "cost": "Gratuito",
+      "requiresAccount": false
+    }
+  ]
+}

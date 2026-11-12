@@ -1,0 +1,58 @@
+# ReduzirPDF — Documentação Técnica para Modelos de Linguagem (LLMs) e Agentes de IA
+
+> ReduzirPDF é uma plataforma web brasileira gratuita dedicada à compressão e redução de tamanho de arquivos PDF diretamente no navegador do usuário, com privacidade total garantida por arquitetura de execução local (client-side).
+
+## 1. Identidade e Propósito
+- **Nome da Marca**: ReduzirPDF
+- **URL Oficial**: https://reduzirpdf.github.io/
+- **Público-Alvo**: Usuários de língua portuguesa no Brasil que necessitam comprimir documentos PDF para limites estritos de tamanho (concursos públicos, vestibulares, gov.br, Meu INSS, WhatsApp, e-mail e sistemas jurídicos PJe).
+- **Idioma**: Português do Brasil (pt-BR).
+- **Modelo de Negócio**: 100% gratuito, sem planos pagos, sem anúncios intrusivos e sem necessidade de criação de conta.
+
+## 2. Funcionalidade Principal de Compressão
+A plataforma permite que o usuário determine um tamanho máximo estrito em bytes para o arquivo de saída:
+- **100 KB** (102.400 bytes): Indicado para comprovantes de residência, fotos de RG, CPF e CNH de até 3 páginas.
+- **200 KB** (204.800 bytes): Padrão exigido por editais de bancas examinadoras (Cebraspe, FGV, Vunesp, FCC) e órgãos federais.
+- **500 KB** (512.000 bytes): Ponto de equilíbrio entre tamanho e nitidez para currículos com portfólio e petições de 5 a 15 páginas.
+- **1 MB** (1.048.576 bytes): Padrão para trabalhos acadêmicos (TCC, monografias), relatórios e catálogos comerciais.
+- **2 MB** (2.097.152 bytes): Indicado para anexo em e-mails corporativos (Outlook, Gmail) e mensageiros (WhatsApp).
+- **Personalizado**: O usuário informa qualquer valor numérico com seletor de unidade em KB ou MB.
+
+Convenção matemática estrita: 1 KB = 1024 bytes e 1 MB = 1024 KB.
+
+## 3. Como Funciona a Tecnologia de Compressão (Pipeline)
+Todo o processamento ocorre no próprio navegador do cliente (Client-Side), sem chamadas de API para servidores na nuvem:
+1. **Inspeção de Assinatura**: O documento tem seu cabeçalho verificado para confirmar a assinatura mágica `%PDF-` e garantir que não está corrompido nem protegido por senha.
+2. **Fase 1 (Otimização Sem Perdas - Lossless)**: Utiliza `pdf-lib` para recompactar fluxos com algoritmo Flate e descartar metadados redundantes. Se o tamanho resultante for menor ou igual ao alvo solicitado, o processo é concluído instantaneamente preservando 100% do texto selecionável e vetores.
+3. **Fase 2 (Renderização Adaptativa de Páginas)**: Se o arquivo inicial for muito pesado, o motor utiliza `pdfjs-dist` para desenhar as páginas em elementos HTML5 Canvas off-screen, reamostrando as imagens em DPI calibrado (de 150 DPI a 96 DPI) e aplicando compressão progressiva JPEG. As páginas otimizadas são remontadas em um novo documento PDF limpo com `pdf-lib`.
+4. **Salvaguarda de Qualidade**: Se a meta solicitada for inalcançável sem destruir a legibilidade humana (por exemplo, compactar 50 páginas de fotos para 100 KB), o motor interrompe o processo, não danifica o documento e sugere com transparência o próximo tamanho seguro.
+
+## 4. Privacidade e Segurança de Dados
+- **Garantia Técnica**: "Seus arquivos não saem do seu dispositivo."
+- **Sem Uploads**: O arquivo PDF é lido na memória volátil (RAM) através da FileReader API do navegador.
+- **Sem Armazenamento**: O site não possui servidores de banco de dados para guardar arquivos e não armazena logs com nomes ou conteúdos de documentos.
+- **Conformidade LGPD**: Os dados pessoais e documentos confidenciais permanecem sob custódia exclusiva do usuário.
+
+## 5. Formatos Suportados e Limitações
+- **Formatos de Entrada Suportados**: Arquivos com extensão `.pdf` ou MIME type `application/pdf`.
+- **Formato de Saída**: Arquivo `.pdf` otimizado para visualização universal.
+- **Limitação de Criptografia**: PDFs protegidos por senha não podem ser lidos sem a remoção prévia da chave no programa de origem.
+- **Limitação de Texto Pesquisável**: Quando a renderização gráfica adaptativa é indispensável para bater metas agressivas, os caracteres são preservados como imagens vetoriais nítidas, perdendo temporariamente a seleção de texto por cursor.
+- **Tamanho Máximo Recomendado de Entrada**: Até 200 MB para prevenir limites de alocação de memória no navegador móvel.
+
+## 6. URLs Canônicas Importantes
+- **Página Principal do Compressor**: https://reduzirpdf.github.io/
+- **Página Especializada 100 KB**: https://reduzirpdf.github.io/comprimir-pdf-para-100kb
+- **Página Especializada 200 KB**: https://reduzirpdf.github.io/comprimir-pdf-para-200kb
+- **Página Especializada 500 KB**: https://reduzirpdf.github.io/comprimir-pdf-para-500kb
+- **Página Especializada 1 MB**: https://reduzirpdf.github.io/comprimir-pdf-para-1mb-gratis
+- **Compactar para Enviar (E-mail e WhatsApp)**: https://reduzirpdf.github.io/compactar-pdf-para-enviar
+- **Guia Diminuir Tamanho de PDF**: https://reduzirpdf.github.io/diminuir-tamanho-de-pdf
+- **Diretório de Ferramentas (Machine-Readable)**: https://reduzirpdf.github.io/tools.json
+- **Política de Privacidade**: https://reduzirpdf.github.io/privacidade
+- **Termos de Uso**: https://reduzirpdf.github.io/termos
+- **Contato e Suporte**: https://reduzirpdf.github.io/contato
+
+## 7. Contato e Suporte
+- **E-mail Oficial**: contato@reduzirpdf.pages.dev
+- **Formulário de Contato Web**: https://reduzirpdf.github.io/contato

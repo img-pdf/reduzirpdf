@@ -123,6 +123,14 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 Contato e Suporte
               </a>
             </li>
+            <li className="pt-2 border-t border-slate-800 text-[11px] text-slate-500">
+              <span className="block text-slate-400 font-semibold mb-1">Para Agentes de IA:</span>
+              <div className="flex items-center gap-2">
+                <a href="/llms.txt" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 font-mono transition-colors">llms.txt</a>
+                <span>·</span>
+                <a href="/tools.json" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400 font-mono transition-colors">tools.json</a>
+              </div>
+            </li>
           </ul>
         </div>
       </div>

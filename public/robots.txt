@@ -1,4 +1,8 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://reduzirpdf.pages.dev/sitemap.xml
+Sitemap: https://reduzirpdf.github.io/sitemap.xml
+
+# Diretórios legíveis por máquina para agentes de IA e navegadores automatizados:
+# https://reduzirpdf.github.io/llms.txt
+# https://reduzirpdf.github.io/tools.json
