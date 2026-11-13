@@ -311,7 +311,7 @@ export async function compressPdf(
 
     // Criar novo documento PDF para receber as páginas processadas
     const newPdfDoc = await PDFDocument.create();
-    newPdfDoc.setProducer('ReduzirPDF (https://reduzirpdf.github.io)');
+    newPdfDoc.setProducer('ReduzirPDF (https://reduzirpdf.pages.dev)');
     newPdfDoc.setCreator('ReduzirPDF');
 
     for (let pageNum = 1; pageNum <= totalPages; pageNum++) {

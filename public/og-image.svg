@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" fill="none">
+  <rect width="1200" height="630" fill="#F8FAFC"/>
+  <rect x="48" y="48" width="1104" height="534" rx="28" fill="#FFFFFF" stroke="#E2E8F0" stroke-width="2"/>
+  <rect x="112" y="132" width="84" height="84" rx="20" fill="#2563EB"/>
+  <path d="M160 152h-18a4 4 0 0 0-4 4v36a4 4 0 0 0 4 4h24a4 4 0 0 0 4-4v-24l-10-16z" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <polyline points="160 152 160 168 170 168" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M154 188v-12" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M148 182l6 6 6-6" stroke="#FFFFFF" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="220" y="190" fill="#0F172A" font-family="system-ui, -apple-system, sans-serif" font-size="48" font-weight="800">Reduzir<tspan fill="#2563EB">PDF</tspan></text>
+  <text x="112" y="295" fill="#0F172A" font-family="system-ui, -apple-system, sans-serif" font-size="52" font-weight="800">Comprima seu PDF grátis</text>
+  <text x="112" y="360" fill="#0F172A" font-family="system-ui, -apple-system, sans-serif" font-size="52" font-weight="800">para o tamanho que você precisa</text>
+  <text x="112" y="430" fill="#475569" font-family="system-ui, -apple-system, sans-serif" font-size="28" font-weight="500">100 KB · 200 KB · 500 KB · 1 MB · 2 MB · Direto no navegador</text>
+  <rect x="112" y="482" width="460" height="52" rx="12" fill="#EFF6FF" stroke="#BFDBFE" stroke-width="1.5"/>
+  <text x="138" y="516" fill="#1D4ED8" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="700">Seus arquivos não saem do seu dispositivo</text>
+</svg>

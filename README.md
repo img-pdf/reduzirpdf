@@ -66,19 +66,19 @@ O build estático será gerado na pasta `dist/`.
 
 ---
 
-## 🌐 Deploy em Produção (GitHub Pages & Cloudflare Pages)
+## 🌐 Deploy em Produção (Cloudflare Pages & GitHub Pages)
 
-- **Website Oficial**: [https://reduzirpdf.github.io/](https://reduzirpdf.github.io/)
+- **Website Oficial (Cloudflare Pages)**: [https://reduzirpdf.pages.dev/](https://reduzirpdf.pages.dev/)
 - **Repositório**: [https://github.com/img-pdf/reduzirpdf](https://github.com/img-pdf/reduzirpdf)
-- **Diretório para Agentes de IA (AAO)**: [https://reduzirpdf.github.io/tools.json](https://reduzirpdf.github.io/tools.json)
-- **Documentação para LLMs**: [https://reduzirpdf.github.io/llms.txt](https://reduzirpdf.github.io/llms.txt)
+- **Diretório para Agentes de IA (AAO)**: [https://reduzirpdf.pages.dev/tools.json](https://reduzirpdf.pages.dev/tools.json)
+- **Documentação para LLMs**: [https://reduzirpdf.pages.dev/llms.txt](https://reduzirpdf.pages.dev/llms.txt)
 
-### Deploy no GitHub Pages
-1. Configure o repositório em **Settings > Pages** com fonte **GitHub Actions**.
-2. O arquivo `public/404.html` garante roteamento SPA para rotas como `/comprimir-pdf-para-100kb`.
+### Deploy no Cloudflare Pages (Produção)
+1. Conecte o repositório no Cloudflare Pages (`npm run build`, saída em `dist`).
+2. O arquivo `public/_redirects` (`/* /index.html 200`) garante roteamento SPA direto para rotas como `/comprimir-pdf-para-100kb`.
 
-### Deploy alternativo no Cloudflare Pages
-O arquivo `public/_redirects` (`/* /index.html 200`) é incluído para roteamento SPA em ambientes Cloudflare Pages.
+### Deploy alternativo no GitHub Pages
+O arquivo `public/404.html` é mantido para compatibilidade caso o projeto seja espelhado no GitHub Pages.
 
 ---
 

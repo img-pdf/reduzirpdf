@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { PageContent } from '../types';
 
-export const PRODUCTION_CANONICAL_HOST = 'https://reduzirpdf.github.io';
+export const PRODUCTION_CANONICAL_HOST = 'https://reduzirpdf.pages.dev';
 
 export function getCanonicalUrlForPath(path: string): string {
   if (!path || path === '/') {
@@ -76,6 +76,7 @@ export const SEOHead: React.FC<SEOHeadProps> = ({ page }) => {
     setMetaTag('property', 'og:title', page.title);
     setMetaTag('property', 'og:description', page.metaDescription);
     setMetaTag('property', 'og:url', canonicalUrl);
+    setMetaTag('property', 'og:image', `${PRODUCTION_CANONICAL_HOST}/og-image.svg`);
     setMetaTag('property', 'og:site_name', 'ReduzirPDF');
     setMetaTag('property', 'og:locale', 'pt_BR');
     setMetaTag('property', 'og:type', 'website');
@@ -85,20 +86,26 @@ export const SEOHead: React.FC<SEOHeadProps> = ({ page }) => {
     setMetaTag('name', 'twitter:title', page.title);
     setMetaTag('name', 'twitter:description', page.metaDescription);
     setMetaTag('name', 'twitter:url', canonicalUrl);
+    setMetaTag('name', 'twitter:image', `${PRODUCTION_CANONICAL_HOST}/og-image.svg`);
 
     // 6. Schema.org JSON-LD Completo (Organization, WebSite, WebApplication, BreadcrumbList, FAQPage)
+    const ogImageUrl = `${PRODUCTION_CANONICAL_HOST}/og-image.svg`;
     const jsonLdData: Record<string, unknown>[] = [
       {
         '@context': 'https://schema.org',
         '@type': 'Organization',
+        '@id': `${PRODUCTION_CANONICAL_HOST}/#organization`,
         name: 'ReduzirPDF',
         url: `${PRODUCTION_CANONICAL_HOST}/`,
+        logo: ogImageUrl,
+        image: ogImageUrl,
         description: 'Ferramenta web gratuita para compressão e redução de tamanho de arquivos PDF no navegador com privacidade total.',
         sameAs: ['https://github.com/img-pdf/reduzirpdf'],
       },
       {
         '@context': 'https://schema.org',
         '@type': 'WebSite',
+        '@id': `${PRODUCTION_CANONICAL_HOST}/#website`,
         name: 'ReduzirPDF',
         url: `${PRODUCTION_CANONICAL_HOST}/`,
         inLanguage: 'pt-BR',
@@ -107,8 +114,11 @@ export const SEOHead: React.FC<SEOHeadProps> = ({ page }) => {
       {
         '@context': 'https://schema.org',
         '@type': 'WebApplication',
+        '@id': `${canonicalUrl}#webapp`,
         name: page.title,
         url: canonicalUrl,
+        mainEntityOfPage: canonicalUrl,
+        image: ogImageUrl,
         applicationCategory: 'UtilitiesApplication',
         operatingSystem: 'All',
         browserRequirements: 'Requires JavaScript. Requires HTML5.',

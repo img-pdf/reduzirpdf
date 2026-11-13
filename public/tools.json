@@ -2,13 +2,13 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "name": "ReduzirPDF Tools Directory",
   "description": "Diretório de ferramentas de processamento de documentos PDF do ReduzirPDF para agentes de IA e navegadores automatizados.",
-  "website": "https://reduzirpdf.github.io/",
+  "website": "https://reduzirpdf.pages.dev/",
   "language": "pt-BR",
   "tools": [
     {
       "id": "pdf-compressor",
       "name": "Compressor de PDF ReduzirPDF",
-      "url": "https://reduzirpdf.github.io/",
+      "url": "https://reduzirpdf.pages.dev/",
       "category": "PDF Compression & Optimization",
       "description": "Comprime arquivos PDF para limites estritos de tamanho em bytes (100 KB, 200 KB, 500 KB, 1 MB, 2 MB ou personalizado) diretamente no navegador, gratuitamente, sem cadastro e com privacidade absoluta.",
       "processingMethod": "100% no navegador do cliente (Client-Side) utilizando WebAssembly, PDF.js e pdf-lib. Nenhum byte do documento é transferido para servidores externos.",

@@ -4,7 +4,7 @@
 
 ## 1. Identidade e Propósito
 - **Nome da Marca**: ReduzirPDF
-- **URL Oficial**: https://reduzirpdf.github.io/
+- **URL Oficial**: https://reduzirpdf.pages.dev/
 - **Público-Alvo**: Usuários de língua portuguesa no Brasil que necessitam comprimir documentos PDF para limites estritos de tamanho (concursos públicos, vestibulares, gov.br, Meu INSS, WhatsApp, e-mail e sistemas jurídicos PJe).
 - **Idioma**: Português do Brasil (pt-BR).
 - **Modelo de Negócio**: 100% gratuito, sem planos pagos, sem anúncios intrusivos e sem necessidade de criação de conta.
@@ -41,18 +41,18 @@ Todo o processamento ocorre no próprio navegador do cliente (Client-Side), sem 
 - **Tamanho Máximo Recomendado de Entrada**: Até 200 MB para prevenir limites de alocação de memória no navegador móvel.
 
 ## 6. URLs Canônicas Importantes
-- **Página Principal do Compressor**: https://reduzirpdf.github.io/
-- **Página Especializada 100 KB**: https://reduzirpdf.github.io/comprimir-pdf-para-100kb
-- **Página Especializada 200 KB**: https://reduzirpdf.github.io/comprimir-pdf-para-200kb
-- **Página Especializada 500 KB**: https://reduzirpdf.github.io/comprimir-pdf-para-500kb
-- **Página Especializada 1 MB**: https://reduzirpdf.github.io/comprimir-pdf-para-1mb-gratis
-- **Compactar para Enviar (E-mail e WhatsApp)**: https://reduzirpdf.github.io/compactar-pdf-para-enviar
-- **Guia Diminuir Tamanho de PDF**: https://reduzirpdf.github.io/diminuir-tamanho-de-pdf
-- **Diretório de Ferramentas (Machine-Readable)**: https://reduzirpdf.github.io/tools.json
-- **Política de Privacidade**: https://reduzirpdf.github.io/privacidade
-- **Termos de Uso**: https://reduzirpdf.github.io/termos
-- **Contato e Suporte**: https://reduzirpdf.github.io/contato
+- **Página Principal do Compressor**: https://reduzirpdf.pages.dev/
+- **Página Especializada 100 KB**: https://reduzirpdf.pages.dev/comprimir-pdf-para-100kb
+- **Página Especializada 200 KB**: https://reduzirpdf.pages.dev/comprimir-pdf-para-200kb
+- **Página Especializada 500 KB**: https://reduzirpdf.pages.dev/comprimir-pdf-para-500kb
+- **Página Especializada 1 MB**: https://reduzirpdf.pages.dev/comprimir-pdf-para-1mb-gratis
+- **Compactar para Enviar (E-mail e WhatsApp)**: https://reduzirpdf.pages.dev/compactar-pdf-para-enviar
+- **Guia Diminuir Tamanho de PDF**: https://reduzirpdf.pages.dev/diminuir-tamanho-de-pdf
+- **Diretório de Ferramentas (Machine-Readable)**: https://reduzirpdf.pages.dev/tools.json
+- **Política de Privacidade**: https://reduzirpdf.pages.dev/privacidade
+- **Termos de Uso**: https://reduzirpdf.pages.dev/termos
+- **Contato e Suporte**: https://reduzirpdf.pages.dev/contato
 
 ## 7. Contato e Suporte
 - **E-mail Oficial**: contato@reduzirpdf.pages.dev
-- **Formulário de Contato Web**: https://reduzirpdf.github.io/contato
+- **Formulário de Contato Web**: https://reduzirpdf.pages.dev/contato
